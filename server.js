@@ -18,8 +18,9 @@ app.get('/', function (req, res) {
 });
 
 app.post('/search', function (req, res) {
-  var result = words.search(req.body.pattern).result;
-  res.render('result', { words: result, pattern: req.body.pattern });
+  var searchResult = words.search(req.body.pattern);
+  var result = searchResult.result;
+  res.render('result', { words: result, searchResult: searchResult, pattern: req.body.pattern });
 });
 
 app.listen(process.env.PORT || config.port);
